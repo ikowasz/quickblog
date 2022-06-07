@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>What are you doing?</title>
+
+  <style>
+      /*
+          RESET
+      */
+      h1, h2, h3, h4, h5, h6 {
+          margin: 0;
+      }
+      /*
+          main styles
+      */
+      html,
+      body {
+          width: 100%;
+          min-height: 100vh;
+
+          margin: 0;
+          padding: 0;
+
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 18px;
+          font-size: clamp(16px, 1.5vw, 28px);
+          text-align: left;
+      }
+
+      main {
+          margin: 0 auto;
+          max-width: 36em;
+          max-width: 50ch;
+          padding: 0 1em 10vh;
+      }
+
+      @media only screen and (min-width: 740px) {
+          main {
+              margin-left: 14vw;
+          }
+      }
+
+      /* subpage header */
+      header {
+          padding: .25em .5em;
+          border-bottom: 1px dashed #cacaca;
+          margin-bottom: 1em;
+      }
+      header > * {
+          display: inline-block;
+      }
+      header .bar-content .row {
+          /* margin-bottom: .5em; */
+          height: 1em;
+      }
+
+      header * {
+          font-size: 1em;
+      }
+
+      header h3 {
+          display: inline;
+          margin: 0;
+      }
+
+      header img {
+          float: left;
+          max-height: 2em;
+          margin-right: .5em;
+          margin-top: .1em;
+          border-radius: 100%;
+      }
+
+      /*
+          UI styles
+      */
+      .row {
+          display: block;
+      }
+
+      /* navigation */
+      nav {
+          overflow: hidden;
+          display: inline-block;
+          text-align: left;
+      }
+
+      /*
+          Post
+       */
+      main > section {
+          margin-bottom: min(200px, 10vh);
+      }
+
+      @media only screen and (min-width: 740px) {
+          main > section > * {
+              margin-left: 20px;
+          }
+      }
+
+      main > section > h1 {
+          text-transform: uppercase;
+          margin-bottom: 0.4em;
+      }
+
+      main > section > h1:first-child {
+          margin-left: 0;
+      }
+
+      main > section > p:last-child > em {
+          font-size: 0.6em;
+          text-indent: 0;
+          text-align: right;
+          display: block;
+      }
+
+      main > section > h1 + p,
+      main > section > h2 + p,
+      main > section > h3 + p,
+      main > section > h4 + p,
+      main > section > h5 + p,
+      main > section > h6 + p {
+          text-indent: 1em;
+      }
+
+      main > section > p {
+          text-align: justify;
+          margin-top: 0;
+          margin-bottom: 30px;
+      }
+
+      main > section a {
+          color: #0070f3;
+          text-decoration: none;
+      }
+
+      main > section a:hover {
+          text-decoration: underline;
+      }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="bar-content">
+      <div class="row">
+        <h3>What are you doing?</h3>
+      </div>
+      <div class="row">
+        <span>&nbsp;<< I don't know either. >></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- content -->
+  </main>
+</body>
+
+</html>

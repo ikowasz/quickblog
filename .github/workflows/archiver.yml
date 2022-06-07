@@ -1,0 +1,30 @@
+name: Archiving blog posts
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+      - release_*
+jobs:
+  Archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Archive posts
+        run: npm --prefix tools/archiver start
+
+      - name: Add posts changes to new commit
+        run: |
+          git config --global user.name "Bot Archiver"
+          git add content/posts
+          git commit -m '[AUTO] updated new posts filenames' || true
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.ref }}
