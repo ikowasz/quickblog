@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eta": "^1.12.3",
     "markdown-it": "^13.0.1"
   }
 }

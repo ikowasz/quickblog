@@ -1,44 +1,54 @@
 const fs = require('fs')
 const path = require("path");
 const MarkdownIt = require('markdown-it')
+const Eta = require('eta')
 const fsPromise = fs.promises
 const md = MarkdownIt()
 
 const Posts = require('./posts')
+const paths = require('./paths')
 
 class Builder {
   static async build() {
     const builder = new Builder()
-    return builder.build()
+    return builder.build_index()
   }
 
   constructor() {
     this.posts = new Posts()
   }
 
-  async build() {
-    const output_dir = path.resolve(__dirname, '../../dist')
-    const output_path = path.resolve(output_dir, 'blog.html')
-    const data = await this.get_blog()
-    await fsPromise.mkdir(output_dir, {recursive: true})
-    await fsPromise.writeFile(output_path, data)
+  async build_index() {
+    const output_file = path.resolve(paths.output, 'index.html')
+    const html = await this.render_index()
+    await fsPromise.mkdir(paths.output, {recursive: true})
+    await fsPromise.writeFile(output_file, html)
 
-    return output_path
+    return paths.output
   }
 
-  async get_blog() {
-    const template = await this.get_template()
+  async render_index() {
+    const output = await this.render_template('index')
+    return output
+  }
+
+  async render_template(name) {
+    const template = await this.get_template(name)
     const content = await this.get_content()
-    const rendered = template.replace(/\<\!--\s*content\s*--\>/, content)
-
-    return rendered
+    const render = Eta.render(template, {content})
+    return render
   }
 
-  async get_template() {
-    const template_path = path.resolve(__dirname, '../../content/template.html')
+  async get_template(name) {
+    const template_path = await this.get_template_path(name)
     const data = await fsPromise.readFile(template_path)
     const text = data.toString()
     return text
+  }
+
+  async get_template_path(name) {
+    const template_path = path.resolve(paths.templates, `${name}.eta.html`)
+    return template_path
   }
 
   async get_content() {
