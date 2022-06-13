@@ -5,8 +5,9 @@ const Eta = require('eta')
 const fsPromise = fs.promises
 const md = MarkdownIt()
 
-const Posts = require('./posts')
-const paths = require('./paths')
+const lib = require('quickblog-lib')
+const Posts = lib.posts
+const paths = lib.paths
 
 class Builder {
   static async build() {

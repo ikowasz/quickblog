@@ -1,7 +1,7 @@
 const path = require('path')
 
-const base_path = path.resolve(__dirname, '../..')
-const output_path = path.resolve(__dirname, 'dist')
+const base_path = process.cwd()
+const output_path = path.resolve(base_path, 'dist')
 const content_path = path.resolve(base_path, 'content')
 const templates_path = path.resolve(content_path, 'templates')
 

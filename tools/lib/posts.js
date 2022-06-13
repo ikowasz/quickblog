@@ -1,5 +1,6 @@
 const fs = require("fs")
 const path = require("path");
+const paths = require('./paths')
 const fsPromise = fs.promises
 
 const POSTS_FILTER_REGEX = /.*\.md$/
@@ -22,7 +23,7 @@ class Posts {
 
   async get_dir() {
     if (!this.posts_path) {
-      this.posts_path = path.resolve(__dirname, '../../content/posts')
+      this.posts_path = path.resolve(paths.content, 'posts')
     }
 
     return this.posts_path
