@@ -7,7 +7,7 @@ const exec = util.promisify(child_process.exec)
 
 const Posts = require('./posts')
 
-const DATED_POST_REGEX = /^(\d{2,4}_\d{1,2}_\d{1,2}_\d{1,2}_\d{1,2}|__top.*)_.*/
+const DATED_POST_REGEX = /^(\d{4}_\d{2}_\d{2}_\d{2}_\d{2}|__top.*)_.*/
 
 class Archiver {
   static run() {
@@ -74,8 +74,17 @@ class Archiver {
 
   async get_post_new_name(filename) {
     const date = await this.get_post_archiving_date(filename)
-    const datestr = `${date.getFullYear()}_${date.getMonth() + 1}_${date.getDate()}_${date.getHours()}_${date.getMinutes()}`
+    const year = date.getFullYear()
+    const month = this.fillzeros(date.getMonth() + 1)
+    const day = this.fillzeros(date.getDate())
+    const hour = this.fillzeros(date.getHours())
+    const minutes = this.fillzeros(date.getMinutes())
+    const datestr = `${year}_${month}_${day}_${hour}_${minutes}`
     return `${datestr}_${filename}`
+  }
+
+  fillzeros(num) {
+    return ('0' + num).slice(-2)
   }
 
   async update_post(filename) {
