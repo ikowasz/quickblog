@@ -39,6 +39,19 @@ class Posts {
     const text = data.toString()
     return text
   }
+
+  async post_exists(filename) {
+    try {
+      const path = await this.get_path(filename)
+      await fsPromise.stat(path)
+      return true
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        return false
+      }
+      throw e
+    }
+  }
 }
 
 Posts.FILTER_REGEX = POSTS_FILTER_REGEX

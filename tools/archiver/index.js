@@ -5,7 +5,7 @@ const child_process = require('child_process')
 const fsPromise = fs.promises
 const exec = util.promisify(child_process.exec)
 
-const Posts = require('./posts')
+const Posts = require('../lib/posts')
 
 const DATED_POST_REGEX = /^(\d{4}_\d{2}_\d{2}_\d{2}_\d{2}|__top.*)_.*/
 

@@ -4,7 +4,7 @@ const MarkdownIt = require('markdown-it')
 const fsPromise = fs.promises
 const md = MarkdownIt()
 
-const Posts = require('./posts')
+const Posts = require('../lib/posts')
 
 class Builder {
   static async build() {
